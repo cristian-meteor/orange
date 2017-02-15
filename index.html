@@ -1,0 +1,736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no," />
+
+	<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="text/html; charset=ISO-8859-1">
+	<script type="text/javascript" src="js/lib/jquery1.9.js"></script>
+	<script type="text/javascript" src="js/lib/bootstrap.js"></script>
+	<script type="text/javascript" src="js/lib/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/funciones_comunes.js?10640"></script>
+	<script type="text/javascript" src="js/validator/id.js"></script>
+	<script type="text/javascript" src="js/validator/notEmpty.js"></script>
+	<script type="text/javascript" src="js/validator/phone.js"></script>
+	<script type="text/javascript" src="js/login.js?10640"></script>
+ 	<script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
+
+
+	<link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap/bootstrapValidator.min.css" rel="stylesheet"/>
+	<link href="css/style.css?10640" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap/font-awesome.min.css" rel="stylesheet" >
+	<link href="css/login.css?10640" rel="stylesheet" type="text/css" />
+
+	<!--[if lt IE 9]>
+  		<script src="js/lib/html5shiv.min.js"></script>
+  		<script src="js/lib/respond.min.js"></script>
+	<![endif]-->
+	<title>EUREKA - Login</title>
+</head>
+
+<body onload="if(history.length>0)history.go(+1);" class="altura_login fondo_negro"  >
+
+	<!--  pop ups de alerta -->
+
+
+
+
+<!DOCTYPE html>
+
+<!-- Modal correo nuevo -->
+<div class="modal fade" id="popUp" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal_comercial" aria-hidden="true" style="z-index: 5000;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+
+					<!-- Formulario para el envío del correo -->
+					<div id="mensajeAviso" class="cursor_flecha">
+				<div style= "position:relative;top:-10px;" class="row">
+					<div class="col-lg-2 col-md-2 col-sm-2 " >
+						<img class="margen_top_10px padding_10px_izquierdo" src="images/info.png" width="50px">
+					</div>
+
+					<div  class="mensaje txt_orange fuente20px col-lg-9 col-md-9 col-sm-9 txt_centrado " id="titulo"> Aquí va el  titulo<BR>
+						<span id="borrarTerminalesPopUpMsg" class="txt_negro"><!-- Ten en cuenta que se eliminarán todos los terminales asociados a esta recomendación. --></span>
+					</div>
+					<div id="cruzCerrar" style="position:relative;left:25px;top:-3px;" class="  glyphicon glyphicon-remove-circle col-lg-1 col-md-1 col-sm-1 txt_negro cursor_pointer txt_derecha" data-dismiss="modal" onclick="liberarCortinilla();">
+			 		</div>
+				 	<div  class="mensaje  fuente18px col-lg-9 col-md-9 col-sm-9 txt_centrado " id="mensaje"> Aqui va el mensaje</div>
+
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 " >
+						<button id="botonAceptar" class="btn-orange-nuevo-degradado  col-lg-4 col-sm-4 col-xs-4 col-md-4"  onclick="liberarCortinilla();" data-dismiss="modal"> Aceptar </button>
+						<button id="botonCancelar" type="button" class="col-sm-offset-1  col-lg-4 col-sm-4 col-xs-4 col-md-4 btn-orange-nuevo-degradado" onclick="liberarCortinilla();" style="margin-right: 15px;" data-dismiss="modal">Cancelar</button>
+						<button id="botonPrescoringMigra" type="button" class="col-sm-offset-1 col-lg-4 col-sm-4 col-xs-4 col-md-4 btn-orange-nuevo-degradado" onclick="liberarCortinilla();" style="margin-right: 15px;display:none;height:50px;" data-dismiss="modal">Seguir sin Definir Precios</button>
+
+						<button id="botonFormularioExt" type="button" class="col-sm-offset-1  col-lg-4 col-sm-4 col-xs-4 col-md-4 btn-orange-nuevo-degradado margen_negativo_izquierdo_30" onclick="desplegarFormulario();" data-dismiss="modal">Formulario<br>extendido</button>
+						<button id="botonFormularioRed" type="button" class="col-sm-offset-1  col-lg-4 col-sm-4 col-xs-4 col-md-4 btn-orange-nuevo-degradado" onclick="desplegarFormularioReducido();" data-dismiss="modal">Formulario<br>reducido</button>
+					</div>
+
+				</div>
+
+			</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Fin modal ir a agenda-->
+
+	<!-- IMG LOADER -->
+	<img id="displayCargando1"  style="display: none;" src="images/loader-orange.gif" />
+	<div class="contenedor altura_login fondo_negro" >
+	<!-- IMG LOADER -->
+	<div id="displayCargando" style="border: none;" class="fondo_negro">
+		<div class="contenedor altura_login fondo_negro">
+			<div class="row col-lg-12 col-md-12 col-sm-12 fondo_negro">
+				<div class="cabeceraLogin row margen_top_25px " >
+					<div class="col-lg-1 col-md-1 col-sm-1">
+						<img src="images/Logo-Orange.jpg" alt="..." class="logo_orange margen_5px full_width" >
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 ">
+						<span class="segmento_cabecera_login txt_izquierda panel-title margen_5px fuente40px">
+							Eureka
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="fondo_negro">
+				<div class="row margen_top_25px fondo_negro txt_centrado" style="margin:0 auto;">
+
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 caja_estrategicos" >
+							<div class="row height_286px">
+								<div class="row titulo_estrategicos fuente28px " >
+									<span style="margin-left:10px;">Nueva Love Negocio Total+</span>
+								</div>
+								<div class="row txt_izquierda fuente20px margen_top_15px">
+									La tarifa m&aacute;s grande y completa
+								</div>
+								<div class="row txt_izquierda fuente20px margen_top_15px">
+									30 GB de navegaci&oacute;n 4G, el mejor acceso de fibra, 2 l&iacute;neas m&oacute;viles ilimitadas, Office 365 Essentials, Tu Experto Orange y las mejores ofertas en terminales
+								</div>
+								<!-- <div class="row txt_izquierda fuente20px margen_top_15px">
+
+								</div>-->
+							</div>
+							<div class="row txt_centrado height_286pxImportant">
+								<img src="images/ESTRATEGICO.png" height="225px;"/>
+							</div>
+						</div>
+
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 caja_estrategicos" >
+							<div class="row height_286px">
+								<div class="row titulo_estrategicos fuente28px " >
+									<span style="margin-left:10px;">Descuento multil&iacute;nea</span>
+								</div>
+								<div class="row txt_izquierda fuente20px margen_top_15px">
+
+								</div>
+								<div class="row txt_izquierda fuente20px margen_top_15px">
+									20% de descuento en las segundas l&iacute;neas y sucesivas  de las tarifas Tuc&aacute;n Pro, Ballena Pro 100, Delf&iacute;n Pro, Ballena Pro y Mi Fijo Pro.
+								</div>
+								<!-- <div class="row txt_izquierda fuente20px margen_top_15px">
+
+								</div>-->
+							</div>
+							<div class="row txt_centrado height_286pxImportant">
+								<img src="images/ESTRATEGICO2.png" height="225px;"/>
+							</div>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	 <div class="cabeceraLogin row">
+		<div class="col-lg-1 col-md-1 col-sm-1">
+			<img src="images/Logo-Orange.jpg" alt="..." class="logo_orange margen_5px" >
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-2">
+			<span class="segmento_cabecera_login">
+				<h3 class="panel-title margen_5px fuente40px">Eureka</h3>
+			</span>
+		</div>
+	</div>
+
+	<div id="wrapper" style="margin:0 auto;">
+		<!-- Password cerca de Caducidad -->
+
+			<div class="row">
+				<div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 " >
+					<span class="fuente30px txt_white"> ¡hola!</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" >
+					<span class="txt_orange fuente23px" > selecciona el tipo de cliente...</span>
+				</div>
+			</div>
+			<div class="row margen_top_40px">
+				<div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" >
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" >
+					<div id="contenedorLogin " class="degradado_fondo_horizontal sombra_naranja borde2px_naranja redondeo"  style="min-height:325px;">
+		              		<div id="cabeceraLogin"  style="background-color:#000000!important;">
+
+		              			<div id="tab_nuevo_cliente" class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 tab_no_activa " style="color: #FFF;"  onclick="seleccionarPestana(this.id);">
+		              				nuevo cliente
+		              			</div>
+		              			<div id="tab_cliente_existente" class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 tab_activa " style="color: #FFF;" onclick="seleccionarPestana(this.id);">
+		              				cliente existente
+		              			</div>
+		              			<form id="LoginValidaDocumento" name="LoginValidaDocumento" action="/EUREKA3/LoginValidaDocumento.action" method="post" class="registerForm" role="form">
+	</form>
+
+
+
+
+
+							</div> <!-- Fin cabecera -->
+							<!-- MENSAJE DE AVISO -->
+							<div id="mensajeAvisoLogin" style="display: none;" class="cursor_flecha">
+								<div class="row">
+									<div class="col-lg-2 col-md-2 col-sm-2 " >
+										<img class="margen_top_10px padding_10px_izquierdo" src="images/info.png" width="50px">
+									</div>
+								 	<div class="mensaje txt_orange fuente18px col-lg-9 col-md-9 col-sm-9 txt_centrado "> El tipo y nº de documento introducido ya corresponde a un cliente Orange, ¿desea acceder a su información o realizar una nueva búsqueda de cliente?
+								 	 </div>
+								 	<div class="cursor_pointer glyphicon glyphicon-remove-circle col-lg-1 col-md-1 col-sm-1 txt_negro cursor_flecha txt_derecha" onclick="liberarCortinilla();"></div>
+								</div>
+								<div class="row">
+									<div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 " >
+
+										<button class="btn-orange-nuevo btn" id="aceptarBorradoOferta" onclick="$('#formLoginValidaDocumentoActionCN').submit();mostrarEstrategicos(); "> Acceder </button>
+										<button class="col-sm-offset-1 btn-orange-nuevo btn" id="cancelar" onclick="liberarCortinilla();"> Buscar </button>
+									</div>
+								</div>
+								<div class="margen_top_25px row">
+								</div>
+							</div>
+
+						<div class="contenedorClienteNuevo row" >
+								<!-- parte izquierda -->
+								<form id="contenedor_izquierdo_nuevo_cliente" name="contenedor_izquierdo_nuevo_cliente" action="/EUREKA3/LoginNuevoClienteAction.action" method="post" role="form">
+
+									<div class="row " style="margin-bottom:-3%;" >
+										<div class="col-lg-6 col-md-6 col-sm-6 ">
+											<div class="row  txt_negro margen_izquierdo_10" style="font-size:18px">
+												crear un cliente
+											</div>
+												<div class="row  txt_gris_oscuro margen_izquierdo_10  ">
+													nombre de la persona *
+												</div>
+												<div class="row  txt_gris_oscuro margen_izquierdo_10  form-group"  onkeyup="$('#campoTipoCN').change();" onchange="$('#campoTipoCN').change();" onkeydown="$('#campoTipoCN').change();" onkeypress="$('#campoTipoCN').change();">
+													<input type="text" class="form-control" name="nombreCN" id="campoNombreCN" />
+												</div>
+												<div class="row  txt_gris_oscuro margen_izquierdo_10" style="margin-top:-4%;">
+													segmento
+												</div>
+												<div class="row  txt_gris_oscuro margen_izquierdo_10 form-group">
+
+													<select class=" form-control cursor_pointer" name="tipoCN" id="campoTipoCN">
+														<option selected value="">seleccione</option>
+
+															<option class="capitalizar" value="RES">Residencial</option>
+
+															<option class="capitalizar" value="EMP">Empresa</option>
+
+															<option class="capitalizar" value="AUTONOMO">Aut&oacute;nomo</option>
+
+															<option class="capitalizar" value="COLEGIADO">Colegiado</option>
+
+													</select>
+												</div>
+
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6  ">
+											<div class="col-lg-9 col-sm-9 col-md-9 col-xs-9 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 margen_top_20pc" >
+												<button type="submit" id="botonEntrarNC" class="btn fuente20px btn btn-orange-nuevo full_width "  onclick="mostrarEstrategicos();" disabled>crear</button>
+											</div>
+										</div>
+
+									</div>
+								</form>
+
+
+
+
+								<!-- parte derecha -->
+								<hr class=" fondo_gris " style="height:2px; width:90%; " >
+
+								<form id="contenedor_derecho_nuevo_cliente" name="contenedor_derecho_nuevo_cliente" action="/EUREKA3/LoginNuevoClienteAction.action" method="post" role="form">
+
+									<div class="row" style="margin-top:-2%" >
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<div class="row  txt_negro margen_izquierdo_10" style="font-size:18px">
+												buscar una recomendación
+											</div>
+											<div class="row  txt_gris_oscuro margen_izquierdo_10 ">
+												documento de identidad *
+											</div>
+									 		<div class="row  txt_gris_oscuro margen_izquierdo_10 ">
+												<div class="row form-group" >
+													<select class=" form-control cursor_pointer fuente12px" onchange="$('#campoNumDocumentoCN').change();" name="tipoDocumentoCN"  id="tipoDocumentoCN">
+														<option selected value="">seleccione</option>
+
+															<option value="NIF">DNI/NIF</option>
+
+															<option value="CIF">CIF</option>
+
+															<option value="PASAPORTE">PASAPORTE</option>
+
+															<option value="NIE">TARJETA DE RESIDENCIA</option>
+
+													</select>
+												</div>
+												<div class="form-group row ">
+													<label for="label_documento" class= "control-label"></label>
+													<input type="text" class="form-control" name="numDocumentoCN" id="campoNumDocumentoCN" />
+
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 ">
+											<div class="col-lg-9 col-sm-9 col-md-9 col-xs-9 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 margen_top_20pc" >
+												<button type="submit" id="botonBuscarNC" class="btn fuente20px  btn-orange-nuevo full_width " onclick="mostrarEstrategicos();" disabled >buscar</button>
+											</div>
+										</div>
+									</div>
+
+									<input type="hidden" name="popUpClienteExistente" id="popUpClienteExistente" value="">
+									<input type="hidden" name="popUpScoringSuperado" id="popUpScoringSuperado" value="">
+								</form>
+
+
+
+
+
+						</div>
+						<!-- se incluye la busqueda por msisdn para TLV y CC -->
+
+							<div class="row contenedorClienteExistente " >
+								<div class="row margen_top_10px">
+									<form id="loginExistente_izda" name="loginExistente_izda" action="/EUREKA3/LoginValidaDocumento.action" method="post" class="registerForm form-horizontal row" role="form">
+
+										<div  >
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<div>
+													<div class="row">
+														<label for="label_tipo_documento" class="txt_izquierda txt_negro control-label label_input margen_izquierdo_5" style="font-size:18px;">
+															documento de identidad
+														</label>
+												    </div>
+													<div class="form-group margen_bottom_10px">
+														<div class="row">
+															<div class="col-lg-11 col-sm-11 col-md-11 col-xs-11"   >
+														    	<select class=" form-control cursor_pointer"  name="tipoDocumento" id="tipoDocumento" onchange = "$('#campoNif').change();">
+																	<option selected value="">tipo de documento</option>
+
+																		<option value="NIF">DNI/NIF</option>
+
+																		<option value="CIF">CIF</option>
+
+																		<option value="PASAPORTE">PASAPORTE</option>
+
+																		<option value="NIE">TARJETA DE RESIDENCIA</option>
+
+																</select>
+														    </div>
+														</div>
+														<label for="label_documento" class="col-lg-5 col-md-5 col-sm-5 col-sx-5 control-label"></label>
+														<div class="col-lg-11 col-sm-11 col-md-11 col-xs-11" >
+													   		<input type="text" class="form-control" name="nif" id="campoNif" />
+													    </div>
+													 </div>
+												</div>
+											</div>
+											<input type="hidden" id="botonPulsado" value="botonPulsadoIdentidad" name="botonPulsado" >
+
+											<!-- Botón Empezar -->
+										    <div class="col-lg-6 col-md-6 col-sm-6  ">
+												<div class="row margen_top_19pc txt_centrado" >
+													<button type="submit" id="botonEntrar" class="btn fuente20px btn btn-orange-nuevo-sin-ancho " onclick="mostrarEstrategicos();" disabled>buscar por documento</button>
+												</div>
+											</div>
+
+
+										</div>
+									</form>
+
+
+
+
+								</div>
+								<hr class="fondo_gris margen_bottom_0px margen_top_0px" style="height:2px; width:90%" >
+
+								<div class="row ">
+									<form id="loginExistente_dcha" name="loginExistente_dcha" action="/EUREKA3/LoginValidaDocumento.action" method="post" class="registerForm form-horizontal row" role="form">
+
+										<div>
+											<div class=" row">
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="">
+														<div class="row">
+
+															<label for="label_num_telef" class="txt_izquierda txt_negro control-label label_input margen_izquierdo_10" style="font-size:18px;">
+																teléfono
+															</label>
+
+
+													    </div>
+													</div>
+													<div class="form-group margen_bottom_10px">
+														<label for="label_documento" class="col-lg-5 col-md-5 col-sm-5 col-sx-5 control-label"></label>
+														<div class="col-lg-11 col-sm-11 col-md-11 col-xs-11 " >
+													   		<input type="text" class="form-control"   name="msisdn" id="campoMsisdn"  maxlength="9" />
+													    </div>
+													</div>
+												</div>
+												<input type="hidden" id="botonPulsado" value="botonPulsadoMsisdn" name="botonPulsado" >
+
+												<!-- Botón Empezar -->
+												 <div class="col-lg-6 col-md-6 col-sm-6  ">
+													<div class="row txt_centrado margen_top_8pc" >
+
+														<button type="submit" id="botonEntrar" class="btn fuente20px btn-orange-nuevo-sin-ancho  " onclick="mostrarEstrategicos();" disabled >buscar por teléfono</button>
+
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+
+
+
+
+								</div>
+
+									<hr class="fondo_gris margen_bottom_0px margen_top_0px" style="height:2px; width:90%" >
+
+								<!--BLOQUE PARA BUSCAR PEDIDOS POR DOCUMENTO-->
+								<input type="hidden" value="true" id="ocultarFacturas_id">
+
+									<div class="row">
+										<form id="loginExistente_pedidos" name="loginExistente_pedidos" action="/EUREKA3/LoginValidaDocumento.action" method="post" class="registerForm form-horizontal row" role="form">
+
+											<div>
+												<div class=" row">
+													<div class="col-lg-6 col-md-6 col-sm-6">
+														<div>
+															<div class="row">
+																<label for="label_tipo_documento" class="txt_izquierda txt_negro control-label label_input margen_izquierdo_5" style="font-size:18px;">
+																	busqueda de pedidos
+																</label>
+														    </div>
+															<div class="form-group margen_bottom_2px">
+																<div class="row">
+																	<div class="col-lg-11 col-sm-11 col-md-11 col-xs-11"  >
+																    	<select class=" form-control cursor_pointer"  name="tipoDocumento" id="tipoDocumentoPedido" onchange = "$('#campoNifPedido').change();">
+																			<option selected value="">tipo de documento</option>
+
+																				<option value="NIF">DNI/NIF</option>
+
+																				<option value="CIF">CIF</option>
+
+																				<option value="PASAPORTE">PASAPORTE</option>
+
+																				<option value="NIE">TARJETA DE RESIDENCIA</option>
+
+																		</select>
+																    </div>
+																</div>
+																<label for="label_documento" class="col-lg-5 col-md-5 col-sm-5 col-sx-5 control-label"></label>
+																<div class="col-lg-11 col-sm-11 col-md-11 col-xs-11" >
+															   		<input type="text" class="form-control" name="nif" id="campoNifPedido" />
+															    </div>
+															</div>
+														</div>
+													</div>
+													<input type="hidden" id="botonPulsado" value="botonPulsadoPedido" name="botonPulsado" >
+													<input type="hidden" name="popUpNoMulticanalidad" id="popUpNoMulticanalidad" value="">
+													<input type="hidden" name="popUpNoPedidosTienda" id="popUpNoPedidosTienda" value="">
+
+													<!-- Botón Empezar -->
+												    <div class="col-lg-6 col-md-6 col-sm-6  ">
+														<div class="row margen_top_14pc txt_centrado" >
+															<button type="submit" id="botonEntrarPedidos" class="btn fuente20px btn btn-orange-nuevo-sin-ancho" disabled  onclick="mostrarEstrategicos();">buscar pedidos</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+
+
+
+
+									</div>
+
+								<!--FIN DEL BLOQUE PARA BUSCAR PEDIDOS POR DOCUMENTO  -->
+							</div>
+
+
+						<div class="margen_top_5pc"></div>
+
+						<div  class="padding_10px txt_error padding_50px_izquierdo" id="mensajeError"  style="display:none">  El tipo de documento es obligatorio</div>
+
+					</div> <!-- Fin panel -->
+
+
+					<div class="row margen_top_2pc">
+
+
+							<form id="form_prospecto" name="form_prospecto" action="/EUREKA3/ProspectoFormAction.action" method="post" role="form">
+
+								<div class="col-lg-6 col-md-6 col-sm-6  col-lg-offset-6 col-md-offset-6 col-sm-offset-6 txt_white">
+									<a style="cursor: pointer; text-decoration: underline;" href="javascript: $('#form_prospecto').submit();" onclick="mostrarCargando1();">ver las recomendaciones de la tienda</a>
+								</div>
+								<input type="hidden" id="botonPulsado" value="botonPulsadoIdentidad" name="botonPulsado" >
+							</form>
+
+
+
+
+
+					</div>
+					<div>
+
+					</div>
+
+				</div>	<!-- Fin col -->
+			</div>
+	</div> <!-- Fin wrapper -->
+	</div>
+	<input type="hidden" name="indicadorInicio" value="INDICADOR_NUEVO_CLIENTE" id="indicadorInicio">
+	<form id="formLoginValidaDocumentoActionCN" name="formLoginValidaDocumentoActionCN" action="/EUREKA3/LoginValidaDocumento.action" method="post" role="form">
+
+		<input type="hidden" id="tipoDocumentoClienteNuevo" name="tipoDocumento" value="">
+		<input type="hidden" id="nifClienteNuevo" name="nif" value="">
+	</form>
+
+
+
+
+	<form id="formLogin" name="formLogin" action="/EUREKA3/NuevoClienteAction.action" method="post" role="form">
+</form>
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<script type="text/javascript" src="js/cargador/formulario_cargador.js"></script>
+
+<!-- Modal datos necesarios recomendación -->
+<div class="modal fade fuente15px scroll_vertical_auto" style="width:100%;height:100%;color:transparent;" data-keyboard="false" data-backdrop="static"  id="formulario_cargador" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- 	<div class="modal-dialog " style="width:1200px;"> --><!-- Si se quiere mostrar todo el formulario completo, poner este Div y comentar el de debajo -->
+	<div class="modal-dialog " style="width:650px;">
+<!-- 		<div class="modal-content " style="width:1200px;"> --><!-- Si se quiere mostrar todo el formulario completo, poner este Div y comentar el de debajo -->
+		<div class="modal-content " style="width:650px;">
+			<div class="modal-header modal-cabecera-datos-reco full_width" >
+				<div class="row txt_orange" >
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						<img src="images/usuario_naranja.png"  width="15px;">
+					</div>
+					<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 txt_izquierda  fuente23px">
+						cargador
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 txt_izquierda cursor_pointer fuente23px" id="aspaFormulario" onclick="resetearFormularioCargador();">
+						<img src="images/aspa_gris.png" width="15px;">
+					</div>
+				</div>
+			</div>
+			<div class="modal-body" style="overflow-y: hidden;">
+				<div class="row txt_negro">
+					<form id="form_cargador" name="form_cargador" action="/EUREKA3/CargadorAction.action" method="POST" enctype="MULTIPART/FORM-DATA">
+
+						<div id="opcionesFormulario" class="row">
+<!-- 							<div id="formIzquierda" class="col-lg-6 col-md-6 col-sm-6"> --><!-- Si se quiere mostrar todo el formulario completo, poner este Div y comentar el de debajo -->
+							<div id="formIzquierda" class="col-lg-12 col-md-12 col-sm-12">
+								<span>Selecciona segmento:</span><br></br>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="radio" name="tipoSegmento" id="formCargadorRes" value="RES" onclick="darValorTipoSegmento('RES')"/>
+									<label for="formCargadorRes"><span><span></span></span>Residencial</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="radio" name="tipoSegmento" id="formCargadorEmp" value="EMP" onclick="darValorTipoSegmento('EMP')"/>
+									<label for="formCargadorEmp"><span><span></span></span>Empresa</label>
+								</div><br></br>
+
+								<span>Selecciona el tipo de fichero a cargar:</span><br></br>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="radio" name="tipoCarga" id="formCargadorCapta" value="CAPTACION" onclick="darValorTipoCarga('CAPTACION')"/>
+									<label for="formCargadorCapta"><span><span></span></span>Captación</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="radio" name="tipoCarga" id="formCargadorSeguro" value="SEGURO" onclick="darValorTipoCarga('SEGURO')"/>
+									<label for="formCargadorSeguro"><span><span></span></span>Seguro</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="radio" name="tipoCarga" id="formCargadorUsuarios" value="USUARIOS" onclick="darValorTipoCarga('USUARIOS')"/>
+									<label for="formCargadorUsuarios"><span>Usuarios</span></label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="radio" name="tipoCarga" id="formCargadorTss" value="TSS" onclick="darValorTipoCarga('TSS')"/>
+									<label for="formCargadorTss"><span>TSS</span></label>
+								</div><br></br>
+
+								<div style="display: none;"><!-- Div usado solo para ocultar este bloque. Si se quiere mostrar, eliminar el Div -->
+									<span>Selecciona el canal:</span><br></br>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<input type="checkbox" name="tipoCanalPdv" id="formCargadorPdv" value="PDV" onclick="desmarcarCanal('formCargadorPdv')"/>
+										<label for="formCargadorPdv"><span><span></span></span>PDV</label>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<input type="checkbox" name="tipoCanalTlv" id="formCargadorTlv" value="TLV" onclick="desmarcarCanal('formCargadorTlv')"/>
+										<label for="formCargadorTlv"><span><span></span></span>TLV</label>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<input type="checkbox" name="tipoCanalCc" id="formCargadorCc" value="CC" onclick="desmarcarCanal('formCargadorCc')"/>
+										<label for="formCargadorCc"><span><span></span></span>CC</label>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<input type="checkbox" name="tipoCanalTodos" id="formCargadorCanalTodos" value="TODOS" checked onclick="desmarcarCanal('formCargadorCanalTodos')"/>
+										<label for="formCargadorCanalTodos"><span><span></span></span>Todos</label>
+									</div><br></br>
+								</div>
+
+								<span>Selecciona el acto comercial:</span><br></br>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoActoComercialAlta" id="formCargadorAlta" value="ALTA" onclick="desmarcarActoComercial('formCargadorAlta')"/>
+									<label for="formCargadorAlta"><span><span></span></span>Alta</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoActoComercialPortabilidad" id="formCargadorPorta" value="PORTABILIDAD" onclick="desmarcarActoComercial('formCargadorPorta')"/>
+									<label for="formCargadorPorta"><span><span></span></span>Portabilidad</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoActoComercialMigracion" id="formCargadorMigra" value="MIGRACION" onclick="desmarcarActoComercial('formCargadorMigra')"/>
+									<label for="formCargadorMigra"><span><span></span></span>Migración</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoActoComercialTodos" id="formCargadorActoComercialTodos" value="TODOS" checked onclick="desmarcarActoComercial('formCargadorActoComercialTodos')"/>
+									<label for="formCargadorActoComercialTodos"><span><span></span></span>Todos</label>
+								</div><br></br>
+							</div>
+							<div id="formDerecha" class="col-lg-6 col-md-6 col-sm-6" style="border-left: 2px solid #FF6E00; display: none;">
+								<span>Selecciona el contrato donante:</span><br></br>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoContratoDonantePrepago" id="formCargadorPre" value="PREPAGO" onclick="desmarcarContratoDonante('formCargadorPre')"/>
+									<label for="formCargadorPre"><span><span></span></span>Prepago</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoContratoDonantePospago" id="formCargadorPos" value="POSPAGO" onclick="desmarcarContratoDonante('formCargadorPos')"/>
+									<label for="formCargadorPos"><span><span></span></span>Pospago</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoContratoDonanteTodos" id="formCargadorContratoDonanteTodos" value="TODOS" checked onclick="desmarcarContratoDonante('formCargadorContratoDonanteTodos')"/>
+									<label for="formCargadorContratoDonanteTodos"><span><span></span></span>Todos</label>
+								</div><br></br>
+
+								<span>Selecciona el tipo de pago:</span><br></br>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoPagoUnico" id="formCargadorUnico" value="UNICO" onclick="desmarcarTipoPago('formCargadorUnico')"/>
+									<label for="formCargadorUnico"><span><span></span></span>Único</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoPagoAplazado" id="formCargadorAplazado" value="APLAZADO" onclick="desmarcarTipoPago('formCargadorAplazado')"/>
+									<label for="formCargadorAplazado"><span><span></span></span>Aplazado</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoPagoTodos" id="formCargadorTipoPagoTodos" value="TODOS" checked onclick="desmarcarTipoPago('formCargadorTipoPagoTodos')"/>
+									<label for="formCargadorTipoPagoTodos"><span><span></span></span>Todos</label>
+								</div><br></br>
+
+								<span>Selecciona el tipo de terminal:</span><br></br>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoTerminalPrimario" id="formCargadorPrimario" value="1" onclick="desmarcarTipoTerminal('formCargadorPrimario')"/>
+									<label for="formCargadorPrimario"><span><span></span></span>Primario</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoTerminalSecundario" id="formCargadorSecundario" value="2" onclick="desmarcarTipoTerminal('formCargadorSecundario')"/>
+									<label for="formCargadorSecundario"><span><span></span></span>Secundario</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoTerminalAmbos" id="formCargadorAmbos" value="3" onclick="desmarcarTipoTerminal('formCargadorAmbos')"/>
+									<label for="formCargadorAmbos"><span><span></span></span>Ambos</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoTerminalTodos" id="formCargadorTipoTerminalTodos" value="TODOS" checked onclick="desmarcarTipoTerminal('formCargadorTipoTerminalTodos')"/>
+									<label for="formCargadorTipoTerminalTodos"><span><span></span></span>Todos</label>
+								</div><br></br>
+
+									<span>Selecciona el tipo de cliente:</span><br></br>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoClienteNuevo" id="formCargadorNuevo" value="0" onclick="desmarcarTipoCliente('formCargadorNuevo')"/>
+									<label for="formCargadorNuevo"><span><span></span></span>Nuevo</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoClienteExistente" id="formCargadorExistente" value="1" onclick="desmarcarTipoCliente('formCargadorExistente')"/>
+									<label for="formCargadorExistente"><span><span></span></span>Existente</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoClienteCanguro" id="formCargadorCanguro" value="2" onclick="desmarcarTipoCliente('formCargadorCanguro')"/>
+									<label for="formCargadorCanguro"><span><span></span></span>Canguro</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<input type="checkbox" name="tipoClienteTodos" id="formCargadorTipoClienteTodos" value="TODOS" checked onclick="desmarcarTipoCliente('formCargadorTipoClienteTodos')"/>
+									<label for="formCargadorTipoClienteTodos"><span><span></span></span>Todos</label>
+								</div><br></br>
+							</div>
+							<br></br>
+						</div>
+						<div class="row margen_top_2pc">
+							<label for="seleccionFicheroCargador">Selecciona un fichero:</label>
+							<input type="file" name="fileCargador" id="seleccionFicheroCargador" value=""/>
+						</div>
+						<input type="hidden" name="tipoCargaCargador" id="tipoCargaCargador" value=""/>
+						<input type="hidden" name="tipoSegmentoCargador" id="tipoSegmentoCargador" value=""/>
+						<input type="hidden" name="tipoCanalCargador" id="tipoCanalCargador" value="TODOS"/>
+						<input type="hidden" name="tipoActoComercialCargador" id="tipoActoComercialCargador" value="TODOS"/>
+						<input type="hidden" name="tipoContratoDonanteCargador" id="tipoContratoDonanteCargador" value="TODOS"/>
+						<input type="hidden" name="tipoPagoCargador" id="tipoPagoCargador" value="TODOS"/>
+						<input type="hidden" name="tipoTerminalCargador" id="tipoTerminalCargador" value="TODOS"/>
+						<input type="hidden" name="tipoClienteCargador" id="tipoClienteCargador" value="TODOS"/>
+						<input type="hidden" name="nombreFicheroCargador" id="nombreFicheroCargador" value=""/>
+					</form>
+
+
+
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<span id="textoErrorCargador" class="txt_negro margen_top_2pc" style="float:left; display: none;">Debe rellenar todos los campos del formulario y seleccionar un fichero</span>
+				<button id="botonAceptarCargador" type="button" class="btn btn-orange degradado" onclick="comprobarValorOpciones(); validarFormularioCargador();">aceptar</button>
+				<button type="button" class="btn btn-cancelar" data-dismiss="modal" style="margin-right: 15px" onclick="resetearFormularioCargador()">cancelar</button>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-lg-offset-1 col-md-offset-1  col-sm-offset-1 separacion_pie">
+							<img id="displayCargandoCargador" src="images/loader-orange.gif" style="display:none" />
+						</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>
